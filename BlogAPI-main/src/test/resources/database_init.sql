@@ -9,9 +9,9 @@ CREATE TABLE IF NOT EXISTS users (
 
 
 CREATE TABLE `articolo` (
-  `id_articolo` bigint NOT NULL,
+  `id_articolo` bigint NOT NULL AUTO_INCREMENT,
   `titolo` varchar(100) NOT NULL,
-  `sottotitolo` varchar(50) DEFAULT NULL,
+  `sottotitolo` varchar(50) NOT NULL,
   `testo` text NOT NULL,
   `id_categoria` bigint NOT NULL,
   `data_pubbl` date NOT NULL,
@@ -20,19 +20,16 @@ CREATE TABLE `articolo` (
   `id_autore` bigint NOT NULL,
   `id_tag` bigint NOT NULL,
   PRIMARY KEY (`id_articolo`),
-  KEY `articolo_FK` (`id_tag`),
+  KEY `articolo_FK` (`id_categoria`),
   KEY `articolo_FK_1` (`id_autore`),
-  KEY `articolo_FK_2` (`id_categoria`),
-  CONSTRAINT `articolo_FK` FOREIGN KEY (`id_tag`) REFERENCES `tag` (`id_tag`),
-  CONSTRAINT `articolo_FK_1` FOREIGN KEY (`id_autore`) REFERENCES `autore` (`id_autore`),
-  CONSTRAINT `articolo_FK_2` FOREIGN KEY (`id_categoria`) REFERENCES `categoria` (`id_categoria`);
- 
- 
- CREATE TABLE `autore` (
-  `id_autore` bigint NOT NULL AUTO_INCREMENT,
-  `nome` varchar(50) NOT NULL,
-  PRIMARY KEY (`id_autore`)
+  KEY `articolo_FK_2` (`id_tag`),
+  CONSTRAINT `articolo_FK` FOREIGN KEY (`id_categoria`) REFERENCES `categoria` (`id_categoria`),
+  CONSTRAINT `articolo_FK_1` FOREIGN KEY (`id_autore`) REFERENCES `users` (`id`),
+  CONSTRAINT `articolo_FK_2` FOREIGN KEY (`id_tag`) REFERENCES `tag` (`id_tag`)
 );
+ 
+ 
+
 
 CREATE TABLE `categoria` (
   `id_categoria` bigint NOT NULL AUTO_INCREMENT,
