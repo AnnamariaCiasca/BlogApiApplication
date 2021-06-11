@@ -67,5 +67,26 @@ INSERT INTO blog.autore (nome) VALUES('Annamaria');
 
 INSERT INTO blog.tag (tag) VALUES('Latino');
 
+INSERT INTO blog.users (username, password) VALUES('Annamaria', 'password');
+
+
+INSERT INTO blog.stato (id_articolo, stato_art) VALUES(1, 'Pubblicato');
+INSERT INTO blog.stato (id_articolo, stato_art) VALUES(2, 'Bozza');
+
+
+
 
 INSERT INTO blog.articolo (id_articolo, titolo, sottotitolo, testo, id_categoria, data_pubbl, data_modif, data_creaz, id_autore, id_tag) VALUES(1, 'De Bello Gallico', 'Resoconto di guerra', "Gallia est omnia divisa in partes tres", 3, '2021/03/21', '2021/03/21', '2021/03/20', 1, 1 );;
+INSERT INTO blog.articolo (id_articolo, titolo, sottotitolo, testo, id_categoria, data_pubbl, data_modif, data_creaz, id_autore, id_tag) VALUES(2, 'X Agosto', 'Poesia', "Tornava una rondine al tetto", 3, '2021/03/21', '2021/03/21', '2021/03/20', 1, 1 );
+INSERT INTO blog.articolo (id_articolo, titolo, sottotitolo, testo, id_categoria, data_pubbl, data_modif, data_creaz, id_autore, id_tag) VALUES(3, 'Resoconto vaccini', 'Covid', "Aperte Vaccinazioni", 1, '2021/03/21', '2021/03/21', '2021/03/20', 1, 1 );
+
+
+SELECT id_articolo, testo
+FROM articolo a
+inner join categoria c on c.id_categoria = a.id_categoria
+WHERE c.categorie = 'Attualità'
+
+SELECT a.id_articolo, a.testo
+FROM articolo a
+inner join stato s on a.id_articolo = s.id_articolo 
+WHERE s.stato_art = 'Bozza'
