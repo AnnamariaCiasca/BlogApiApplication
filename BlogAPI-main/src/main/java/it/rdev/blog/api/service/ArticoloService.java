@@ -37,8 +37,7 @@ public class ArticoloService {
 	
 
 	
-	public List<Articolo> findArticoloByCategoryId(Long id_categoria) {
-		return articoloDAO.findArticoloByCategoryId(id_categoria);
+
 	}
 	
-}
+

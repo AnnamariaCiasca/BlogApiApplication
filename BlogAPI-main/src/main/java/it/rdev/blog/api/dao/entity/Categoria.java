@@ -1,6 +1,7 @@
 package it.rdev.blog.api.dao.entity;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -13,9 +14,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 
@@ -32,6 +36,10 @@ public class Categoria {
 	@Column(name = "categorie")
 	private String categorie;
 	
+	@OneToMany(mappedBy = "categorie")
+	@JsonIgnore
+	
+	private Set<Articolo> articoli= new HashSet<>();
 	
 	
 	public Long getIdCategoria() {
